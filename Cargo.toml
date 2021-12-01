@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "task-01_1",
+    "task-01_2",
+]
