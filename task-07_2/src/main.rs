@@ -16,16 +16,24 @@ fn main() {
             .map(|x| x.parse::<i32>().unwrap())
             .collect::<Vec<i32>>();
     crab_coordinates.sort();
-    let left = *crab_coordinates.first().unwrap();
-    let right = *crab_coordinates.last().unwrap();
+    let mut left = *crab_coordinates.first().unwrap();
+    let mut right = *crab_coordinates.last().unwrap() + 1;
     let mut least_fuel = i32::MAX;
-    for coordinate in left..(right + 1) {
-        let mut fuel = 0;
+    while (right - left) > 2 {
+        let coordinate_a = left + (right - left) / 3;
+        let coordinate_b = left + (right - left) * 2 / 3;
+        let mut fuel_a = 0;
+        let mut fuel_b = 0;
         for crab_coordinate in &crab_coordinates {
-            fuel += required_fuel((coordinate - crab_coordinate).abs());
+            fuel_a += required_fuel((coordinate_a - crab_coordinate).abs());
+            fuel_b += required_fuel((coordinate_b - crab_coordinate).abs());
         }
-        if fuel < least_fuel {
-            least_fuel = fuel;
+        if fuel_a < fuel_b {
+            right = coordinate_b;
+            least_fuel = i32::min(least_fuel, fuel_a);
+        } else {
+            left = coordinate_a;
+            least_fuel = i32::min(least_fuel, fuel_b);
         }
     }
     dbg!(least_fuel);
