@@ -181,6 +181,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "task-09_1"
+version = "0.1.0"
+dependencies = [
+ "ndarray",
+]
+
+[[package]]
+name = "task-09_2"
+version = "0.1.0"
+dependencies = [
+ "itertools",
+ "ndarray",
+]
+
+[[package]]
 name = "version_check"
 version = "0.9.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
